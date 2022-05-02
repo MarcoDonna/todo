@@ -1,3 +1,7 @@
+:root{
+    font-family: 'Oxygen', sans-serif;
+}
+
 body{
     margin: 0;
     display: flex;
@@ -14,10 +18,6 @@ body{
     overflow-y: scroll;
 }
 
-.list{
-    min-height: 100%;
-}
-
 .item{
     display: flex;
     align-items: center;
@@ -28,26 +28,39 @@ body{
     margin: 10px;
 }
 
+.input{
+    padding: 1.8em 2em;
+    border: 1px solid black;
+    margin-bottom: 30px;
+}
+
+.input>input{
+    height: 32px;
+    font-size: 24px;
+}
+
+button{
+    background-color: transparent;
+    border: none;
+    margin: 15px;
+}
+
 .icon{
     width: 26px;
     height: 26px;
 }
 
-.icon-sml{
-    width: 20px;
-    height: 20px;
-}
-
 .btn-float{
     position: sticky;
-    bottom: 20px;
+    top: 100%;
     left: 100%;
-    transform: translateX(-20px);
+    transform: translate(-20px, -20px);
     width: 56px;
     height: 56px;
     border-radius: 50%;
     display: grid;
     place-items: center;
+    border: 2px solid black;
 }
 
 .hidden{

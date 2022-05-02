@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo</title>
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         @import "style.css";
     </style>
@@ -14,20 +17,20 @@
 <body>
     <h1>ToDo</h1>
     <div class="content">
-        <div class="item hidden" id="create">
+        <div class="item input hidden" id="create">
             <input type="text" id="todo-name">
             <div class="item-control">
-                <button><img class="icon-sml save" id="save" src="assets/add.svg"></button>
-                <button><img class="icon-sml trash" id="discard" src="assets/trash.svg"></button>
+                <button><img class="icon save" id="save" src="assets/check.svg"></button>
+                <button><img class="icon trash" id="discard" src="assets/cross.svg"></button>
             </div>
         </div>
         <div class="list">
-            <div class="item">
+            <!--<div class="item">
                 <h2>Todo name</h2>
                 <div class="item-control">
-                    <button><img class="icon-sml trash" src="assets/trash.svg"></button>
+                    <button><img class="icon trash" src="assets/trash.svg"></button>
                 </div>
-            </div>
+            </div>-->
         </div>
         <button class="btn-float" id="create-btn"><img class="icon" src="assets/add.svg"></button>
     </div>
@@ -70,7 +73,7 @@
                     .addClass("item-control")
                     .append(
                         $("<button>")
-                        .append(`<img class="icon-sml trash" src="assets/trash.svg">`)
+                        .append(`<img class="icon trash" src="assets/trash.svg">`)
                         .on("click", ev => deleteItem(index))
                     )
                 )
