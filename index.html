@@ -38,6 +38,7 @@
         const data = ["Do this", "Do that"];
 
         $("#create-btn").on("click", ev => {
+            $("#todo-name").val("");
             $("#create").removeClass("hidden")
         });
 
@@ -46,19 +47,39 @@
         })
 
         $("#save").on("click", ev => {
-            data.unshift($("#todo-name").val());
+            let newItem = $("#todo-name").val();
+            let data = load();
+            
+            if(newItem == null)
+                return;
+            
+            data.unshift();
             $("#create").addClass("hidden")
-            render(data);
+            save(data);
+            render();
         })
 
         const deleteItem = itemIndex => {
+            let data = load();
             data.splice(itemIndex, 1);
-            render(data);
+            save(data);
+            render();
             return;
+        }
+
+        const save = items => {
+            localStorage.setItem("TODO-APP-ITEMS", JSON.stringify(items || []));
+            return;
+        }
+
+        const load = () => {
+            return JSON.parse(localStorage.getItem("TODO-APP-ITEMS")) || [];
         }
         
 
-        const render = data => {
+        const render = () => {
+            let data = load();
+            
             $(".list").html("");
 
             data.forEach((item, index) => {
