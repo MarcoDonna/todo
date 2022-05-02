@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo</title>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
     <style>
         @import "style.css";
     </style>
@@ -14,14 +14,14 @@
 <body>
     <h1>ToDo</h1>
     <div class="content">
-        <div class="list">
-            <div class="item">
-                <input type="text">
-                <div class="item-control">
-                    <button><img class="icon-sml save" src="assets/add.svg"></button>
-                    <button><img class="icon-sml trash" src="assets/trash.svg"></button>
-                </div>
+        <div class="item hidden" id="create">
+            <input type="text" id="todo-name">
+            <div class="item-control">
+                <button><img class="icon-sml save" id="save" src="assets/add.svg"></button>
+                <button><img class="icon-sml trash" id="discard" src="assets/trash.svg"></button>
             </div>
+        </div>
+        <div class="list">
             <div class="item">
                 <h2>Todo name</h2>
                 <div class="item-control">
@@ -29,7 +29,59 @@
                 </div>
             </div>
         </div>
-        <button class="btn-float"><img class="icon" src="assets/add.svg"></button>
+        <button class="btn-float" id="create-btn"><img class="icon" src="assets/add.svg"></button>
     </div>
+    <script>
+        const data = ["Do this", "Do that"];
+
+        $("#create-btn").on("click", ev => {
+            $("#create").removeClass("hidden")
+        });
+
+        $("#discard").on("click", ev => {
+            $("#create").addClass("hidden")
+        })
+
+        $("#save").on("click", ev => {
+            data.unshift($("#todo-name").val());
+            $("#create").addClass("hidden")
+            render(data);
+        })
+
+        const deleteItem = itemIndex => {
+            data.splice(itemIndex, 1);
+            render(data);
+            return;
+        }
+        
+
+        const render = data => {
+            $(".list").html("");
+
+            data.forEach((item, index) => {
+                $("<div>")
+                .addClass("item")
+                .append(
+                    $("<h2>")
+                    .html(item)
+                )
+                .append(
+                    $("<div>")
+                    .addClass("item-control")
+                    .append(
+                        $("<button>")
+                        .append(`<img class="icon-sml trash" src="assets/trash.svg">`)
+                        .on("click", ev => deleteItem(index))
+                    )
+                )
+                .appendTo(
+                    $(".list")
+                )
+            });
+            return;
+        }
+
+        render(data);
+    </script>
 </body>
 </html>
