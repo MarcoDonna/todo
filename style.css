@@ -18,6 +18,10 @@ body{
     overflow-y: scroll;
 }
 
+.list{
+    min-height: 100%;
+}
+
 .item{
     display: flex;
     align-items: center;
@@ -52,9 +56,9 @@ button{
 
 .btn-float{
     position: sticky;
-    top: 100%;
+    bottom: 20px;
     left: 100%;
-    transform: translate(-20px, -20px);
+    transform: translateX(-20px);
     width: 56px;
     height: 56px;
     border-radius: 50%;
